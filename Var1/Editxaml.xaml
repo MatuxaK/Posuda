@@ -1,0 +1,67 @@
+﻿<Window x:Class="Var1.Editxaml"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Var1"
+        mc:Ignorable="d"
+            Title="Full Screen WPF"
+WindowState="Maximized"
+WindowStyle="None">
+    <StackPanel Height="650" Width="900">
+        <Grid Height="650" Width="900">
+            <ListView Name="productListView" Margin="120,270,115,68" Background="#FF76E37C" Foreground="White" BorderBrush="#FF498C51" >>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn x:Name="articleColumn" Header="Аритикль" Width="100">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Article}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn x:Name="photoColumn" Header="Фото" Width="100">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Image Source="{Binding ImagePath}" Width="80" Height="80" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn x:Name="nameColumn" Header="Наименование" Width="100" DisplayMemberBinding="{Binding Name}">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Property2}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn x:Name="descriptionColumn" Header="Описание товара" Width="350" DisplayMemberBinding="{Binding Description}">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Property3}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <Label Content="" HorizontalAlignment="Left" Margin="120,119,0,0" VerticalAlignment="Top" Height="141" Width="665" Background="#FF76E37C"/>
+            <StackPanel Margin="120,142,531,142">
+                <TextBlock Text="Наименование" Width="100" Height="30" Margin="0,0,0,0" Foreground="White"></TextBlock>
+                <TextBlock Text="Описание товара" Width="100" Height="30" Margin="0,5,0,0" Foreground="White"></TextBlock>
+                <TextBlock Text="Фотография" Width="100" Height="30" Margin="0,5,0,0" Foreground="White"></TextBlock>
+            </StackPanel>
+            <StackPanel Margin="254,137,140,147">
+                <TextBox x:Name="article" Width="400" Height="30" Margin="0,0,0,0" Text="{Binding ElementName=productListView, Path=SelectedItem.Article, Mode=OneWay}" Visibility="Collapsed" Background="#FF76E37C" Foreground="White" BorderBrush="#FF498C51"></TextBox>
+
+                <TextBox x:Name="name" Width="400" Height="30" Margin="0,0,0,0" Text="{Binding ElementName=productListView, Path=SelectedItem.ImagePath, Mode=OneWay}" Background="#FF76E37C" Foreground="White" BorderBrush="#FF498C51"></TextBox>
+                <TextBox x:Name="description" Width="400" Height="30" Margin="0,5,0,0" Text="{Binding ElementName=productListView, Path=SelectedItem.Description, Mode=OneWay}" Background="#FF76E37C" Foreground="White" BorderBrush="#FF498C51"></TextBox>
+                <TextBox x:Name="photo" Width="400" Height="30" Margin="0,5,0,0" Text="{Binding ElementName=productListView, Path=SelectedItem.Name, Mode=OneWay}" Background="#FF76E37C" Foreground="White" BorderBrush="#FF498C51"></TextBox>
+            </StackPanel>
+            <Image HorizontalAlignment="Left" Height="127" Margin="10,10,0,0" VerticalAlignment="Top" Width="132" Source="/Image/logo.png"/>
+            <Label Content="Отредактировать товар" HorizontalAlignment="Center" Margin="0,24,0,0" VerticalAlignment="Top" Background="#FF76E37C" Foreground="White" FontSize="20"/>
+            <Button Click="Edit" Height="30" Content="Сформировать" Margin="747,610,10,10" Background="#FF76E37C" FontSize="20" Foreground="White" BorderBrush="#FF498C51"/>
+            <Button Click="Back" Height="30" Content="Вернуться" Margin="10,610,747,10" FontSize="20" Background="#FF76E37C" Foreground="White" BorderBrush="#FF498C51" />
+            <Frame x:Name="frameedit" NavigationUIVisibility="Hidden" Grid.RowSpan="2" Navigated="frameedit_Navigated"/>
+        </Grid>
+    </StackPanel>
+</Window>
